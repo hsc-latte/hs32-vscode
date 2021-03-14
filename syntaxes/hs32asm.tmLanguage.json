@@ -1,0 +1,71 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "HS32 Assembly",
+	"patterns": [
+		{
+			"name": "comment",
+			"match": "(;.*)"
+		},
+		{
+			"include": "#instructions"
+		},
+		{
+			"include": "#registers"
+		},
+		{
+			"include": "#operators"
+		},
+		{
+			"include": "#literals"
+		}
+	],
+	"repository": {
+		"instructions": {
+			"patterns": [{
+				"name": "entity.name.function",
+				"match": "(?i)\\b(ldr|str|mov)\\b"
+			}, {
+				"name": "entity.name.function",
+				"match": "(?i)\\b(addc?|r?subc?|mul|and|bic|x?or)\\b"
+			}, {
+				"name": "keyword.control.hs32.cmp",
+				"match": "(?i)\\b(cmp|tst)\\b"
+			}, {
+				"name": "keyword.control.hs32.branch",
+				"match": "(?i)\\b(b(eq|ne|cs|nc|ss|ns|ov|nv|ab|be|ge|lt|gt|le)?l?)\\b"
+			}, {
+				"name": "entity.name.tag",
+				"match": "(?i)\\b(db)\\b"
+			}]
+		},
+		"registers": {
+			"patterns": [{
+				"name": "constant.language.register",
+				"match": "(?i)\\b(r\\d{1,2}|pc|lr)\\b"
+			}]
+		},
+		"operators": {
+			"patterns": [{
+				"name": "keyword.operator",
+				"match": "(?i)(\\+|-|&|<-)"
+			}]
+		},
+		"literals": {
+			"patterns": [{
+				"name": "constant.numeric",
+				"match": "(?i)\\b((0h|0x|0b)?[0-9a-f]+(h|b)?)\\b"
+			}, {
+				"name": "string.quoted.double",
+				"begin": "\"",
+				"end": "\"",
+				"patterns": [
+					{
+						"name": "constant.character.escape",
+						"match": "\\\\."
+					}
+				]
+			}]
+		}
+	},
+	"scopeName": "source.hs32asm"
+}
