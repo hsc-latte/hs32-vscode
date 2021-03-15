@@ -31,20 +31,8 @@ const syntaxrules : SyntaxRule[] = [
     { type: "NUM",      rule: [ 'LIT_DEC' ],                    parse: x => x },
     { type: "NUM",      rule: [ 'LIT_BIN' ],                    parse: x => x },
     
-    { type: "LABEL",    rule: [ 'IDENT',':' ],                  parse: x => x },
-    { type: "SHREG",    rule: [ 'REG','SHIFT','NUM' ],          parse: x => x },
-    
-    /*{ type: "OFFSETR",  rule: [ '[','REG','OP','SHREG',']' ],   parse: x => x },
-    { type: "OFFSETR",  rule: [ '[','REG','OP','REG',']' ],     parse: x => x },
-    { type: "PTRR",     rule: [ '[','REG',']' ],                parse: x => x },
-    { type: "PTRR",     rule: [ 'OFFSETR' ],                    parse: x => x },
-
-    { type: "OFFSETI",  rule: [ '[','REG','OP','NUM',']' ],     parse: x => x },
-    { type: "OFFSETI",  rule: [ '[','REG','OP','IDENT',']' ],   parse: x => x },
-    { type: "PTRI",     rule: [ 'OFFSETI' ],                    parse: x => x },
-    { type: "PTRI",     rule: [ '[','IDENT',']' ],              parse: x => x },
-    { type: "PTRI",     rule: [ '[','NUM',']' ],                parse: x => x },
-    { type: "PTRI",     rule: [ '[','OP','NUM',']' ],           parse: x => x }*/
+    { type: "LABEL",    rule: [ 'IDENT',':' ],                  parse: x => x[0].value },
+    { type: "SHREG",    rule: [ 'REG','SHIFT','NUM' ],          parse: x => x }
 ];
 
 // Brute force match and reduce once, returning reduced array + status
@@ -76,7 +64,7 @@ function matchsyntax(tokens : Token[]) {
 
 // A simple tokenize and reduce function
 export function tokenize1(input: string, lineno: number): Token[] {
-    let line = input;
+    let line = input.replace(/;.*/, '');
     let hasMatch = true;
     let tokens : Token[] = [];
     let start = 0;

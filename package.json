@@ -1,8 +1,12 @@
 {
     "name": "hs32asm",
     "displayName": "HS32 Assembly",
-    "description": "",
-    "version": "0.0.1",
+    "publisher": "theonekevin",
+    "author": {
+        "name": "Kevin Dai"
+    },
+    "description": "Language support for HS32 assembly",
+    "version": "1.0.0",
     "engines": {
         "vscode": "^1.54.0"
     },
@@ -13,6 +17,7 @@
         "*"
     ],
     "main": "./out/extension.js",
+    "icon": "logo.png",
     "contributes": {
         "keybindings": [
             {

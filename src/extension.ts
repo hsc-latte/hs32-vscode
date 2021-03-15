@@ -63,7 +63,6 @@ class HsSignatureHelpProvider implements vscode.SignatureHelpProvider {
 				tok = x;
 			}
 		});
-		console.log(n);
 		return { arg: n, tok: tok };
 	}
 
@@ -75,10 +74,6 @@ class HsSignatureHelpProvider implements vscode.SignatureHelpProvider {
 		helper.signatures = signatures;
 		helper.activeSignature = (arg === imm && tok.type.match(/SHREG|REG/)) ? 0 : 1;
 		helper.activeParameter = Math.max(0, Math.min(arg, arity-1));
-		
-		console.log(tokens);
-		console.log(arg);
-		
 		return helper;
 	}
 
